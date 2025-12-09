@@ -1,0 +1,52 @@
+﻿@model BookShoppingCartMartUI.Models.DTOs.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Checkout</h2>
+<form asp-action="Checkout">
+    <div class="py-2">
+        <label asp-for="Name">Name*</label>
+        <input asp-for="Name" class="form-control" type="text" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="py-2">
+        <label asp-for="Email">Email*</label>
+        <input asp-for="Email" class="form-control" type="text" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="py-2">
+        <label asp-for="MobileNumber">MobileNumber*</label>
+        <input asp-for="MobileNumber" class="form-control" type="text" />
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+    </div>
+
+    <div class="py-2">
+        <label asp-for="Address">Address*</label>
+        <textarea asp-for="Address" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="py-2">
+        <span class="mr-2">COD*</span>
+        <select asp-for="PaymentMethod" class="form-control">
+            <option value="">Select Payment Method</option>
+           @*  <option value="COD">Cash On Delivery (COD)</option>
+            <option value="CARD">Credit/Debit Card</option>
+            <option value="NETBANKING">Net Banking</option> *@
+            @foreach(var method in Enum.GetValues(typeof(BookShoppingCartMartUI.Contants.PaymentMethods)))
+            {
+             <option value="@method.ToString()">@method.ToString()</option>   
+            }
+        </select>
+        <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+    </div>
+
+    <div class="py-2">
+    <button type="submit" class="btn btn-primary">Next</button>
+    </div>
+
+</form>
+
+
